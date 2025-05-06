@@ -74,9 +74,11 @@ function matchingStrings(strings, queries) {
   }
   return answer;
 }
-// matchingStrings(
-//   ["nana", "papa", "mama", "gato", "nana"],
-//   ["perro", "leon", "papa", "nana"]
+// console.log(
+//   matchingStrings(
+//     ["nana", "papa", "mama", "gato", "nana"],
+//     ["perro", "leon", "papa", "nana"]
+//   )
 // );
 
 function lonelyinteger2(a) {
@@ -161,14 +163,90 @@ const matriz = [
   [7, 8, 9],
 ];
 
-diagonalDifference(matriz);
+//diagonalDifference(matriz);
 
 function countingSort(arr) {
-  const frequency = new Array(100).fill(0); // Paso 1
+  // Write your code here
+  let numberListInitial = new Array(100).fill(0);
 
-  for (let i = 0; i < arr.length; i++) {     // Paso 2 y 3
-      frequency[arr[i]]++;
+  for (let i = 0; i < arr.length; i++) {
+    numberListInitial[arr[i]]++;
+  }
+  return numberListInitial;
+}
+//console.log(countingSort([1, 1, 3, 2, 1]));
+
+function pangrams(s) {
+  // Write your code here
+  let organized = s.replace(/\s+/g, "").toLowerCase().split("").sort();
+  let alphabet = Array.from({ length: 26 }, (_, i) =>
+    String.fromCharCode(97 + i)
+  );
+  let count = {};
+
+  for (let letter of alphabet) {
+    count[letter] = 0;
   }
 
-  return frequency;                          // Paso 4
+  for (let letter of organized) {
+    if (count.hasOwnProperty(letter)) {
+      count[letter]++;
+    }
+  }
+
+  for (let letter in count) {
+    if (count[letter] === 0) {
+      return "not pangram";
+    }
+  }
+  return "pagram";
 }
+// console.log(
+//   pangrams("We promptly judged antique ivor buckles for the next prize")
+// );
+
+function esPangrama(str) {
+  const alfabeto = "abcdefghijklmnopqrstuvwxyz";
+  const letrasEnFrase = new Set(str.toLowerCase().replace(/[^a-z]/g, ""));
+
+  return alfabeto.split("").every((letra) => letrasEnFrase.has(letra));
+}
+
+function pangrams2(s) {
+  // Write your code here
+  let alphabet = "abcdefghijklmnopqrstuvwxyz".split("");
+  let received = new Set(s.toLowerCase().replace(/[^a-z]/g, ""));
+  console.log(
+    alphabet.every((letter) => received.has(letter)) ? "pangram" : "not pangram"
+  );
+}
+//pangrams2("We promptly judged antique ivory buckles for the next prize");
+
+//----
+function twoArrays(k, A, B) {
+  // Write your code here
+  const sortA = A.sort((a, b) => a - b);
+  const sortB = B.sort((a, b) => b - a);
+  for (let i = 0; i < A.length; i++) {
+    if (A[i] + B[i] < k) {
+      console.log("NO");
+    }
+  }
+  console.log("YES");
+}
+
+//twoArrays(2, [5, 1], [2, 9]);
+
+function birthday(s, d, m) {
+  // Write your code here
+  let count = 0;
+  for (let i = 0; i < s.length - m; i++) {
+    let segment = s.slice(i, i + m);
+    let suma = segment.reduce((a, b) => a + b);
+    if (suma === d) {
+      count++;
+    }
+  }
+  return;
+}
+//birthday([2, 2, 1, 3, 2], 4, 2);
