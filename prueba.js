@@ -247,6 +247,21 @@ function birthday(s, d, m) {
       count++;
     }
   }
-  return;
+  return count;
 }
-//birthday([2, 2, 1, 3, 2], 4, 2);
+//console.log(birthday([2, 2, 1, 3, 2], 4, 2));
+
+function strings_xor(s, t) {
+  let response = [];
+  for (let i = 0; i < s.length; i++) {
+    s[i] === t[i] ? response.push(0) : response.push(1);
+  }
+  console.log(response.join(""));
+}
+//strings_xor("10101", "00101");
+
+function strings_xor2(s, t) {
+  const response = [...s].map((item, i) => (item === t[i] ? 0 : 1)).join("");
+  console.log(response);
+}
+//strings_xor2("10101", "00101");
